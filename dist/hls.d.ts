@@ -97,7 +97,7 @@ export declare class AttrList {
     constructor(attrs: string | Record<string, any>, parsed?: Pick<ParsedMultivariantPlaylist | LevelDetails, 'variableList' | 'hasVariableRefs' | 'playlistParsingError'>);
     get clientAttrs(): string[];
     decimalInteger(attrName: string): number;
-    hexadecimalInteger(attrName: string): Uint8Array<ArrayBuffer> | null;
+    hexadecimalInteger(attrName: string): Uint8Array | null;
     hexadecimalIntegerAsNumber(attrName: string): number;
     decimalFloatingPoint(attrName: string): number;
     optionalFloat(attrName: string, defaultValue: number): number;
@@ -865,10 +865,10 @@ export declare interface DecryptData {
     method: string;
     keyFormat: string;
     keyFormatVersions: number[];
-    iv: Uint8Array<ArrayBuffer> | null;
-    key: Uint8Array<ArrayBuffer> | null;
-    keyId: Uint8Array<ArrayBuffer> | null;
-    pssh: Uint8Array<ArrayBuffer> | null;
+    iv: Uint8Array | null;
+    key: Uint8Array | null;
+    keyId: Uint8Array | null;
+    pssh: Uint8Array | null;
     encrypted: boolean;
     isCommonEncryption: boolean;
 }
@@ -890,11 +890,11 @@ export declare class Decrypter {
     });
     destroy(): void;
     isSync(): boolean;
-    flush(): Uint8Array<ArrayBuffer> | null;
+    flush(): Uint8Array | null;
     reset(): void;
     decrypt(data: Uint8Array | ArrayBuffer, key: ArrayBuffer, iv: ArrayBuffer, aesMode: DecrypterAesMode): Promise<ArrayBuffer>;
     softwareDecrypt(data: Uint8Array, key: ArrayBuffer, iv: ArrayBuffer, aesMode: DecrypterAesMode): ArrayBuffer | null;
-    webCryptoDecrypt(data: Uint8Array<ArrayBuffer>, key: ArrayBuffer, iv: ArrayBuffer, aesMode: DecrypterAesMode): Promise<ArrayBuffer>;
+    webCryptoDecrypt(data: Uint8Array, key: ArrayBuffer, iv: ArrayBuffer, aesMode: DecrypterAesMode): Promise<ArrayBuffer>;
     private onWebCryptoError;
     private getValidChunk;
     private logOnce;
@@ -2739,12 +2739,12 @@ export declare class LevelKey implements DecryptData {
     readonly keyFormatVersions: number[];
     readonly encrypted: boolean;
     readonly isCommonEncryption: boolean;
-    iv: Uint8Array<ArrayBuffer> | null;
-    key: Uint8Array<ArrayBuffer> | null;
-    keyId: Uint8Array<ArrayBuffer> | null;
-    pssh: Uint8Array<ArrayBuffer> | null;
+    iv: Uint8Array | null;
+    key: Uint8Array | null;
+    keyId: Uint8Array | null;
+    pssh: Uint8Array | null;
     static clearKeyUriToKeyIdMap(): void;
-    constructor(method: string, uri: string, format: string, formatversions?: number[], iv?: Uint8Array<ArrayBuffer> | null);
+    constructor(method: string, uri: string, format: string, formatversions?: number[], iv?: Uint8Array | null);
     isSupported(): boolean;
     getDecryptData(sn: number | 'initSegment'): LevelKey | null;
 }
